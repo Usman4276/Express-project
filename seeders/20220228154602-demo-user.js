@@ -13,8 +13,8 @@ module.exports = {
      */
     await queryInterface.bulkInsert("Users", [
       {
-        firstName: "usman",
-        lastName: "mustafa",
+        firstName: "usman mustafa",
+        lastName: "ghulam mustafa",
         email: "usman@gmail.com",
         createdAt: new Date(),
         updatedAt: new Date(),
