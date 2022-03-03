@@ -2,11 +2,11 @@ import express from "express";
 var router = express.Router();
 
 //Controller
-import obj from "../../controller/users/auth.mjs";
+import auth from "../../controller/users/auth.mjs";
 
 //Auth
-router.post("/signup", obj.signup);
-router.post("/login", obj.login);
+router.post("/signup", auth.signup);
+router.post("/login", auth.login);
 
 
 // module.exports = router;

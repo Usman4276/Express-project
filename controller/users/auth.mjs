@@ -5,6 +5,9 @@ const { User } = models;
 
 //Signup function
 async function signup(req, res, next) {
+
+  const { firstName, lastName, username, password } = req.body;
+
   const schema = Joi.object({
     username: Joi.string().required(),
     password: Joi.number().required(),
@@ -14,23 +17,21 @@ async function signup(req, res, next) {
 
   try {
     await schema.validateAsync(req.body);
+    const data = await User.create({
+      firstName,
+      lastName,
+      username,
+      password,
+    });
+
+    res.json({
+      data,
+    });
+
   } catch (error) {
-    console.log("😠", error.message);
-    return;
+    res.status(404).jsend.error(error.message );
   }
-
-  const { firstName, lastName, username, password } = req.body;
-
-  const data = await User.create({
-    firstName,
-    lastName,
-    username,
-    password,
-  });
-
-  res.json({
-    data,
-  });
+  
 }
 
 //Login function
@@ -38,15 +39,22 @@ async function login(req, res, next) {
   const { username, password } = req.body;
   let data;
 
+  const schema = Joi.object({
+    username: Joi.string().required(),
+    password: Joi.string().required(),
+  });
+
   try {
+    await schema.validateAsync(req.body);
+
     data = await User.findOne({
       where: { username, password },
     });
 
-    if (!data) console.log("😞", "User not found!!!");
+    if (!data) throw new Error("User not found!!!");
     res.send(data);
   } catch (error) {
-    console.log(error.message);
+    res.status(404).jsend.error(error.message);
   }
 }
 

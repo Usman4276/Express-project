@@ -4,6 +4,8 @@ import createError from "http-errors";
 import logger from "morgan";
 import path from "path";
 import setRoutes from "./routes/index.mjs";
+import jsend from "jsend";
+
 const __dirname = path.resolve();
 
 var app = express();
@@ -17,6 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(jsend.middleware)
 
 //Passing app to routes
 setRoutes(app);
