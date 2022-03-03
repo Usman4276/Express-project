@@ -5,7 +5,6 @@ const { User } = models;
 
 //Signup function
 async function signup(req, res, next) {
-
   const { firstName, lastName, username, password } = req.body;
 
   const schema = Joi.object({
@@ -24,14 +23,11 @@ async function signup(req, res, next) {
       password,
     });
 
-    res.json({
-      data,
-    });
-
+    res.status(200).jsend.success(data);
+    
   } catch (error) {
-    res.status(404).jsend.error(error.message );
+    res.status(404).jsend.error(error.message);
   }
-  
 }
 
 //Login function
@@ -52,7 +48,7 @@ async function login(req, res, next) {
     });
 
     if (!data) throw new Error("User not found!!!");
-    res.send(data);
+    res.status(200).jsend.success(data);
   } catch (error) {
     res.status(404).jsend.error(error.message);
   }
