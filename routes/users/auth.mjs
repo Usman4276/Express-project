@@ -8,5 +8,6 @@ import obj from "../../controller/users/auth.mjs";
 router.post("/signup", obj.signup);
 router.post("/login", obj.login);
 
+
 // module.exports = router;
 export default router;

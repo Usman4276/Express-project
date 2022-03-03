@@ -40,17 +40,14 @@ async function login(req, res, next) {
 
   try {
     data = await User.findOne({
-      where: { username: username },
+      where: { username, password },
     });
 
-    if(!data) console.log("😞",'User not found!!!')
+    if (!data) console.log("😞", "User not found!!!");
     res.send(data);
-
   } catch (error) {
     console.log(error.message);
   }
-  
-
 }
 
 export default { signup, login };
