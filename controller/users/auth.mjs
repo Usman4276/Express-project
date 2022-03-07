@@ -16,20 +16,17 @@ async function signup(req, res, next) {
     });
 
     res.status(200).jsend.success(data);
-    
   } catch (error) {
     return res.status(400).jsend.error(error.message);
   }
-
 }
 
 //Login function
 async function login(req, res, next) {
   const { username, password } = req.body;
-
+  // console.log(username, password);
   try {
-    await schema.validateAsync(req.body);
-
+  
     const data = await User.findOne({
       where: { username, password },
     });

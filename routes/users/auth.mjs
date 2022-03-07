@@ -8,7 +8,7 @@ import validator from "../../middlewares/auth/user.mjs";
 import auth from "../../controller/users/auth.mjs";
 
 //Routes
-router.post("/signup", validator.signup, auth.signup);
+router.post("/signup", auth.signup);
 router.post("/login", validator.login, auth.login);
 
 // module.exports = router;
